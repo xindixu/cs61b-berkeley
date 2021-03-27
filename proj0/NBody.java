@@ -35,16 +35,54 @@ public class NBody {
         String filename = args[2];
         double radius = readRadius(filename);
         Planet[] planets = readPlanets(filename);
+        int numOfPlanets = planets.length;
+
+        // Animation
+        StdDraw.enableDoubleBuffering();
 
         // Draw the background
         StdDraw.setScale(-radius, radius);
 
         StdDraw.clear();
-        StdDraw.picture(0, 0, BACKGROUND);
 
-        // Draw planets
+        // Animation starts
+        int time = 0;
+        while(time < T){
+            double[] xForces = new double[numOfPlanets];
+            double[] yForces = new double[numOfPlanets];
+            StdDraw.picture(0, 0, BACKGROUND);
+
+            // Calculate forces
+            for (int i = 0; i < numOfPlanets; i++) {
+                Planet p = planets[i];
+                xForces[i] = p.calcNetForceExertedByX(planets);
+                yForces[i] = p.calcNetForceExertedByY(planets);
+                p.update(dt, xForces[i], yForces[i]);
+                p.draw();
+            }
+
+            // Draw planets
+            for (int i = 0; i < numOfPlanets; i++) {
+                Planet p = planets[i];
+                p.update(dt, xForces[i], yForces[i]);
+                p.draw();
+            }
+
+            StdDraw.show();
+            StdDraw.pause(10);
+            time += dt;
+        }
+
+        // Print the universe after animation ends
+
+
+        StdOut.printf("%d\n", numOfPlanets);
+        StdOut.printf("%.2e\n", radius);
+
         for (Planet p : planets) {
-            p.draw();
+            StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+                    p.xxPos, p.yyPos, p.xxVel,
+                    p.yyVel, p.mass, p.imgFileName);
         }
     }
 }
