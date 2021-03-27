@@ -5,8 +5,8 @@ public class Planet {
     public double yyVel;
     public double mass;
     public String imgFileName;
-    public final double GRAVITATIONAL_CONSTANT = 6.67e-11;
-    public static final String IMAGE_PATH_PREFIX = "images/";
+    private final double GRAVITATIONAL_CONSTANT = 6.67e-11;
+    private static final String IMAGE_PATH_PREFIX = "images/";
 
     public Planet(double xxPos, double yyPos, double xxVel, double yyVel, double mass, String imgFileName){
         this.xxPos = xxPos;
