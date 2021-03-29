@@ -21,7 +21,7 @@ public class LinkedListDequeTest {
 
 	/* Utility method for printing out empty checks. */
 	public static boolean checkEqual(String expected, String actual) {
-		if (expected != actual) {
+		if (!expected.equals(actual)) {
 			System.out.println("returned " + actual + ", but expected: " + expected);
 			return false;
 		}
@@ -147,6 +147,20 @@ public class LinkedListDequeTest {
 		printTestStatus(passed);
 	}
 
+	public static void getRecursiveTest() {
+		System.out.println("Running getRecursiveTest.");
+		LinkedListDeque<String> lld1 = new LinkedListDeque<>();
+
+		boolean passed = checkEmpty(true, lld1.isEmpty());
+		lld1.addLast("last 1");
+		lld1.addLast("last 2");
+		lld1.addLast("last 3");
+
+		passed = checkEqual("last 2", lld1.getRecursive(2)) && passed;
+
+		printTestStatus(passed);
+	}
+
 	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
 	public static void addRemoveTest() {
 
@@ -173,10 +187,13 @@ public class LinkedListDequeTest {
 
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
-//		constructorTest();
-//		addFirstTest();
-//		addLastTest();
-//		addRemoveTest();
+		constructorTest();
 		deepCopyConstructorTest();
+		addFirstTest();
+		addLastTest();
+		removeFirstTest();
+		removeLastTest();
+		getTest();
+		getRecursiveTest();
 	}
 }

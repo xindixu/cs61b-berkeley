@@ -92,7 +92,7 @@ public class LinkedListDeque<Type> {
     }
 
     public Type get(int i) {
-        if (i > size) {
+        if (i > size || i < 1) {
             return null;
         }
 
@@ -101,6 +101,21 @@ public class LinkedListDeque<Type> {
             cur = cur.next;
         }
         return cur.item;
+    }
+
+    private Type getRecursiveHelper(int i, ListNode cur){
+        if(i == 0){
+            return cur.item;
+        }
+        return getRecursiveHelper(i - 1, cur.next);
+    }
+
+    public Type getRecursive(int i){
+        if (i > size || i < 1) {
+            return null;
+        }
+
+        return getRecursiveHelper(i, sentinel);
     }
 
     public void printDeque() {
