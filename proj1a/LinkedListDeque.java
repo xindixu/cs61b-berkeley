@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class LinkedListDeque<Type> {
 
     private class ListNode {
@@ -27,17 +29,56 @@ public class LinkedListDeque<Type> {
     }
 
     public void addFirst(Type item) {
-        System.out.println("addFirst " + item);
-        ListNode prevFirst = sentinel.next;
-        ListNode newListNode = new ListNode(item, sentinel, prevFirst);
+        size++;
 
-        if (sentinel.prev == null) {
-            sentinel.prev = newListNode;
+        ListNode prevFirst = sentinel.next;
+        ListNode nodeToAdd = new ListNode(item, sentinel, prevFirst);
+
+        prevFirst.prev = nodeToAdd;
+        sentinel.next = nodeToAdd;
+    }
+
+    public void addLast(Type item) {
+        size++;
+
+        ListNode prevLast = sentinel.prev;
+        ListNode nodeToAdd = new ListNode(item, prevLast, sentinel);
+
+        prevLast.next = nodeToAdd;
+        sentinel.prev = nodeToAdd;
+    }
+
+    public Type removeFirst() {
+        if (size == 0) {
+            return null;
         }
 
-        sentinel.next = newListNode;
-        size++;
+        size--;
+
+        ListNode nodeToRemove = sentinel.next;
+        ListNode newFirst = nodeToRemove.next;
+        sentinel.next = newFirst;
+        newFirst.prev = sentinel;
+
+        return nodeToRemove.item;
     }
+
+    public Type removeLast() {
+        if (size == 0) {
+            return null;
+        }
+
+        size--;
+
+        ListNode nodeToRemove = sentinel.prev;
+        ListNode newLast = nodeToRemove.prev;
+
+        sentinel.prev = newLast;
+        newLast.next = sentinel;
+
+        return nodeToRemove.item;
+    }
+
 
     public void printDeque() {
         ListNode cur = sentinel;
