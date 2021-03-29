@@ -19,6 +19,16 @@ public class LinkedListDequeTest {
 		return true;
 	}
 
+	/* Utility method for printing out empty checks. */
+	public static boolean checkEqual(String expected, String actual) {
+		if (expected != actual) {
+			System.out.println("returned " + actual + ", but expected: " + expected);
+			return false;
+		}
+		return true;
+	}
+
+
 	/* Prints a nice message based on whether a test passed. 
 	 * The \n means newline. */
 	public static void printTestStatus(boolean passed) {
@@ -34,6 +44,16 @@ public class LinkedListDequeTest {
 		System.out.println(l.size());
 	}
 
+	public static void deepCopyConstructorTest() {
+		LinkedListDeque<String> lld1 = new LinkedListDeque<>();
+		lld1.addFirst("first 3");
+		lld1.addFirst("first 2");
+		lld1.addFirst("first 1");
+
+		LinkedListDeque<String> lld2 = new LinkedListDeque<>(lld1);
+		System.out.println("Printing out deque: ");
+		lld2.printDeque();
+	}
 
 	public static void addFirstTest() {
 		System.out.println("Running addFirstTest.");
@@ -113,6 +133,19 @@ public class LinkedListDequeTest {
 		printTestStatus(passed);
 	}
 
+	public static void getTest() {
+		System.out.println("Running getTest.");
+		LinkedListDeque<String> lld1 = new LinkedListDeque<>();
+
+		boolean passed = checkEmpty(true, lld1.isEmpty());
+		lld1.addLast("last 1");
+		lld1.addLast("last 2");
+		lld1.addLast("last 3");
+
+		passed = checkEqual("last 2", lld1.get(2)) && passed;
+
+		printTestStatus(passed);
+	}
 
 	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
 	public static void addRemoveTest() {
@@ -144,6 +177,6 @@ public class LinkedListDequeTest {
 //		addFirstTest();
 //		addLastTest();
 //		addRemoveTest();
-		removeLastTest();
+		deepCopyConstructorTest();
 	}
 }

@@ -28,6 +28,18 @@ public class LinkedListDeque<Type> {
         sentinel.next = sentinel;
     }
 
+    public LinkedListDeque(LinkedListDeque<Type> other) {
+        size = 0;
+        sentinel = new ListNode(null, null, null);
+        sentinel.prev = sentinel;
+        sentinel.next = sentinel;
+
+        for (int i = 0; i <= other.size(); i++) {
+            addLast(other.get(i));
+        }
+        printDeque();
+    }
+
     public void addFirst(Type item) {
         size++;
 
@@ -79,14 +91,25 @@ public class LinkedListDeque<Type> {
         return nodeToRemove.item;
     }
 
+    public Type get(int i) {
+        if (i > size) {
+            return null;
+        }
+
+        ListNode cur = sentinel;
+        for (int j = 0; j < i; j++) {
+            cur = cur.next;
+        }
+        return cur.item;
+    }
 
     public void printDeque() {
         ListNode cur = sentinel;
 
-        do {
-            System.out.println(cur);
+        for (int i = 0; i < size; i++) {
             cur = cur.next;
-        } while (!cur.equals(sentinel));
+            System.out.println(cur);
+        }
     }
 
     public boolean isEmpty() {
