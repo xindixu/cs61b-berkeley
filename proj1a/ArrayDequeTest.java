@@ -46,11 +46,56 @@ public class ArrayDequeTest {
         ArrayDeque<String> ad1 = new ArrayDeque<>();
 
         boolean passed = checkEmpty(true, ad1.isEmpty());
-        ad1.addFirst("first 3");
-        ad1.addFirst("first 2");
-        ad1.addFirst("first 1");
 
-        passed = checkSize(3, ad1.size()) && passed;
+        for (int i = 0; i < 13; i++) {
+            ad1.addFirst("first " + i);
+        }
+
+        passed = checkSize(13, ad1.size()) && passed;
+
+        System.out.println("Printing out deque: ");
+        ad1.printDeque();
+
+        printTestStatus(passed);
+    }
+
+    public static void addLastTest() {
+        System.out.println("Running addLastTest.");
+        ArrayDeque<String> ad1 = new ArrayDeque<>();
+
+        boolean passed = checkEmpty(true, ad1.isEmpty());
+
+        for (int i = 0; i < 26; i++) {
+            ad1.addLast("last " + i);
+        }
+
+        passed = checkSize(26, ad1.size()) && passed;
+
+
+        System.out.println("Printing out deque: ");
+        ad1.printDeque();
+
+        printTestStatus(passed);
+    }
+
+    public static void removeFirstTest() {
+        System.out.println("Running removeFirstTest.");
+        ArrayDeque<String> ad1 = new ArrayDeque<>();
+
+        boolean passed = checkEmpty(true, ad1.isEmpty());
+
+        for (int i = 0; i < 33; i++) {;
+            ad1.addLast("last " + i);
+        }
+
+        passed = checkSize(33, ad1.size()) && passed;
+
+
+        for (int i = 0; i < 8; i++) {;
+            ad1.removeFirst();
+        }
+
+        passed = checkSize(25, ad1.size()) && passed;
 
         System.out.println("Printing out deque: ");
         ad1.printDeque();
@@ -59,12 +104,14 @@ public class ArrayDequeTest {
     }
 
 
+
+
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
         constructorTest();
 //        deepCopyConstructorTest();
-        addFirstTest();
-//        addLastTest();
+//        addFirstTest();
+        addLastTest();
 //        removeFirstTest();
 //        removeLastTest();
 //        getTest();
