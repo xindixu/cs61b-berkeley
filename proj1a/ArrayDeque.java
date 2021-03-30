@@ -1,22 +1,20 @@
-import javax.swing.*;
-
-public class ArrayDeque<Type> {
+public class ArrayDeque<T> {
     private final int INITIAL_SIZE = 8;
     private final double USAGE_FACTOR = 0.25;
-    private Type[] items;
+    private T[] items;
     private int size;
     private int nextFirst;
     private int nextLast;
 
     public ArrayDeque() {
-        items = (Type[]) new Object[INITIAL_SIZE];
+        items = (T[]) new Object[INITIAL_SIZE];
         size = 0;
         nextFirst = INITIAL_SIZE / 2;
         nextLast = nextFirst + 1;
     }
 
     private void resize(int newSize) {
-        Type[] newItems = (Type[]) new Object[newSize];
+        T[] newItems = (T[]) new Object[newSize];
         int newNextFirst = newSize / 2;
         int newNextLast = newNextFirst + 1;
 
@@ -45,15 +43,15 @@ public class ArrayDeque<Type> {
         return index - 1 < 0 ? lastIndex : index - 1;
     }
 
-    private int getNextIndex(int index){
+    private int getNextIndex(int index) {
         return getNextIndex(index, items.length);
     }
 
-    private int getPrevIndex(int index){
+    private int getPrevIndex(int index) {
         return getPrevIndex(index, items.length);
     }
 
-    public void addFirst(Type item) {
+    public void addFirst(T item) {
         if (size + 1 > items.length) {
             resize(size * 2);
         }
@@ -63,7 +61,7 @@ public class ArrayDeque<Type> {
         size++;
     }
 
-    public void addLast(Type item) {
+    public void addLast(T item) {
         if (size + 1 > items.length) {
             resize(size * 2);
         }
@@ -73,33 +71,41 @@ public class ArrayDeque<Type> {
         size++;
     }
 
-    public Type removeFirst() {
+    public T removeFirst() {
+        if(size == 0){
+            return null;
+        }
+
         if (items.length > INITIAL_SIZE * 2 && size - 1 < items.length * USAGE_FACTOR) {
             resize(items.length / 2);
         }
 
         nextFirst = getNextIndex(nextFirst);
-        Type itemToRemove = items[nextFirst];
+        T itemToRemove = items[nextFirst];
         items[nextFirst] = null;
         size--;
 
         return itemToRemove;
     }
 
-    public Type removeLast() {
+    public T removeLast() {
+        if(size == 0){
+            return null;
+        }
+
         if (items.length > INITIAL_SIZE * 2 && size - 1 < items.length * USAGE_FACTOR) {
             resize(items.length / 2);
         }
 
         nextLast = getPrevIndex(nextLast);
-        Type itemToRemove = items[nextLast];
+        T itemToRemove = items[nextLast];
         items[nextLast] = null;
         size--;
 
         return itemToRemove;
     }
 
-    public Type get(int i) {
+    public T get(int i) {
         if (i > size) {
             return null;
         }
@@ -126,7 +132,7 @@ public class ArrayDeque<Type> {
         return size == 0;
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 }

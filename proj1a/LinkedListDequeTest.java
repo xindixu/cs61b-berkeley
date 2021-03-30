@@ -142,7 +142,9 @@ public class LinkedListDequeTest {
 		lld1.addLast("last 2");
 		lld1.addLast("last 3");
 
-		passed = checkEqual("last 2", lld1.get(2)) && passed;
+		passed = checkEqual("last 3", lld1.get(2)) && passed;
+		passed = lld1.get(3) == null && passed;
+		passed = lld1.get(-1) == null && passed;
 
 		printTestStatus(passed);
 	}
@@ -156,7 +158,9 @@ public class LinkedListDequeTest {
 		lld1.addLast("last 2");
 		lld1.addLast("last 3");
 
-		passed = checkEqual("last 2", lld1.getRecursive(2)) && passed;
+		passed = checkEqual("last 2", lld1.getRecursive(1)) && passed;
+		passed = lld1.get(3) == null && passed;
+		passed = lld1.get(-1) == null && passed;
 
 		printTestStatus(passed);
 	}

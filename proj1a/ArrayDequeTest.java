@@ -97,6 +97,12 @@ public class ArrayDequeTest {
 
         passed = checkSize(10, ad1.size()) && passed;
 
+        for (int i = 0; i < 20; i++) {;
+            ad1.removeFirst();
+        }
+
+        passed = checkSize(0, ad1.size()) && passed;
+
         System.out.println("Printing out deque: ");
         ad1.printDeque();
 

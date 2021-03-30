@@ -1,13 +1,11 @@
-import java.util.List;
-
-public class LinkedListDeque<Type> {
+public class LinkedListDeque<T> {
 
     private class ListNode {
-        Type item;
+        T item;
         ListNode next;
         ListNode prev;
 
-        ListNode(Type item, ListNode prev, ListNode next) {
+        ListNode(T item, ListNode prev, ListNode next) {
             this.item = item;
             this.next = next;
             this.prev = prev;
@@ -28,7 +26,7 @@ public class LinkedListDeque<Type> {
         sentinel.next = sentinel;
     }
 
-    public LinkedListDeque(LinkedListDeque<Type> other) {
+    public LinkedListDeque(LinkedListDeque<T> other) {
         size = 0;
         sentinel = new ListNode(null, null, null);
         sentinel.prev = sentinel;
@@ -40,7 +38,7 @@ public class LinkedListDeque<Type> {
         printDeque();
     }
 
-    public void addFirst(Type item) {
+    public void addFirst(T item) {
         size++;
 
         ListNode prevFirst = sentinel.next;
@@ -50,7 +48,7 @@ public class LinkedListDeque<Type> {
         sentinel.next = nodeToAdd;
     }
 
-    public void addLast(Type item) {
+    public void addLast(T item) {
         size++;
 
         ListNode prevLast = sentinel.prev;
@@ -60,7 +58,7 @@ public class LinkedListDeque<Type> {
         sentinel.prev = nodeToAdd;
     }
 
-    public Type removeFirst() {
+    public T removeFirst() {
         if (size == 0) {
             return null;
         }
@@ -75,7 +73,7 @@ public class LinkedListDeque<Type> {
         return nodeToRemove.item;
     }
 
-    public Type removeLast() {
+    public T removeLast() {
         if (size == 0) {
             return null;
         }
@@ -91,31 +89,31 @@ public class LinkedListDeque<Type> {
         return nodeToRemove.item;
     }
 
-    public Type get(int i) {
-        if (i > size || i < 1) {
+    public T get(int i) {
+        if (i > size || i < 0) {
             return null;
         }
 
-        ListNode cur = sentinel;
+        ListNode cur = sentinel.next;
         for (int j = 0; j < i; j++) {
             cur = cur.next;
         }
         return cur.item;
     }
 
-    private Type getRecursiveHelper(int i, ListNode cur){
-        if(i == 0){
+    private T getRecursiveHelper(int i, ListNode cur) {
+        if (i == 0) {
             return cur.item;
         }
         return getRecursiveHelper(i - 1, cur.next);
     }
 
-    public Type getRecursive(int i){
-        if (i > size || i < 1) {
+    public T getRecursive(int i) {
+        if (i > size || i < 0) {
             return null;
         }
 
-        return getRecursiveHelper(i, sentinel);
+        return getRecursiveHelper(i, sentinel.next);
     }
 
     public void printDeque() {
