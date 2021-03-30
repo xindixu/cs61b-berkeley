@@ -99,6 +99,18 @@ public class ArrayDeque<Type> {
         return itemToRemove;
     }
 
+    public Type get(int i) {
+        if (i > size) {
+            return null;
+        }
+
+        int startIndex = getNextIndex(nextFirst);
+        for (int j = 0; j < i; j++) {
+            startIndex = getNextIndex(startIndex);
+        }
+        return items[startIndex];
+    }
+
     public void printDeque() {
         int startIndex = getNextIndex(nextFirst);
         int endIndex = nextLast;

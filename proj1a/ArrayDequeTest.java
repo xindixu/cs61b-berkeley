@@ -128,16 +128,33 @@ public class ArrayDequeTest {
         printTestStatus(passed);
     }
 
+    public static void getTest() {
+        System.out.println("Running getTest.");
+        ArrayDeque<String> ad1 = new ArrayDeque<>();
+
+        boolean passed = checkEmpty(true, ad1.isEmpty());
+
+        for (int i = 0; i < 10; i++) {;
+            ad1.addLast("last " + i);
+        }
+
+        passed = checkSize(10, ad1.size()) && passed;
+
+        passed = checkEqual("last 2", ad1.get(2)) && passed;
+
+        System.out.println("Printing out deque: ");
+        ad1.printDeque();
+
+        printTestStatus(passed);
+    }
 
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
         constructorTest();
-//        deepCopyConstructorTest();
-//        addFirstTest();
-//        addLastTest();
-//        removeFirstTest();
+        addFirstTest();
+        addLastTest();
+        removeFirstTest();
         removeLastTest();
-//        getTest();
-//        getRecursiveTest();
+        getTest();
     }
 }
