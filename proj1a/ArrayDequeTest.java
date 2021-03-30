@@ -84,20 +84,19 @@ public class ArrayDequeTest {
 
         boolean passed = checkEmpty(true, ad1.isEmpty());
 
-        for (int i = 0; i < 90; i++) {;
+        for (int i = 0; i < 90; i++) {
             ad1.addLast("last " + i);
         }
 
         passed = checkSize(90, ad1.size()) && passed;
 
-
-        for (int i = 0; i < 80; i++) {;
+        for (int i = 0; i < 80; i++) {
             ad1.removeFirst();
         }
 
         passed = checkSize(10, ad1.size()) && passed;
 
-        for (int i = 0; i < 20; i++) {;
+        for (int i = 0; i < 20; i++) {
             ad1.removeFirst();
         }
 
@@ -115,14 +114,14 @@ public class ArrayDequeTest {
 
         boolean passed = checkEmpty(true, ad1.isEmpty());
 
-        for (int i = 0; i < 90; i++) {;
+        for (int i = 0; i < 90; i++) {
             ad1.addLast("last " + i);
         }
 
         passed = checkSize(90, ad1.size()) && passed;
 
 
-        for (int i = 0; i < 80; i++) {;
+        for (int i = 0; i < 80; i++) {
             ad1.removeLast();
         }
 
@@ -140,12 +139,11 @@ public class ArrayDequeTest {
 
         boolean passed = checkEmpty(true, ad1.isEmpty());
 
-        for (int i = 0; i < 10; i++) {;
+        for (int i = 0; i < 10; i++) {
             ad1.addLast("last " + i);
         }
 
         passed = checkSize(10, ad1.size()) && passed;
-
         passed = checkEqual("last 2", ad1.get(2)) && passed;
 
         System.out.println("Printing out deque: ");
