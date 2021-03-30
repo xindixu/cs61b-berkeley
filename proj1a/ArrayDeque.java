@@ -74,13 +74,28 @@ public class ArrayDeque<Type> {
     }
 
     public Type removeFirst() {
-        if (size - 1 < items.length * USAGE_FACTOR && items.length > INITIAL_SIZE * 2) {
+        if (items.length > INITIAL_SIZE * 2 && size - 1 < items.length * USAGE_FACTOR) {
             resize(items.length / 2);
         }
 
-        Type itemToRemove = items[0];
-        System.arraycopy(items, 1, items, 0, size);
+        nextFirst = getNextIndex(nextFirst);
+        Type itemToRemove = items[nextFirst];
+        items[nextFirst] = null;
         size--;
+
+        return itemToRemove;
+    }
+
+    public Type removeLast() {
+        if (items.length > INITIAL_SIZE * 2 && size - 1 < items.length * USAGE_FACTOR) {
+            resize(items.length / 2);
+        }
+
+        nextLast = getPrevIndex(nextLast);
+        Type itemToRemove = items[nextLast];
+        items[nextLast] = null;
+        size--;
+
         return itemToRemove;
     }
 

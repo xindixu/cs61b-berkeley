@@ -84,18 +84,43 @@ public class ArrayDequeTest {
 
         boolean passed = checkEmpty(true, ad1.isEmpty());
 
-        for (int i = 0; i < 33; i++) {;
+        for (int i = 0; i < 90; i++) {;
             ad1.addLast("last " + i);
         }
 
-        passed = checkSize(33, ad1.size()) && passed;
+        passed = checkSize(90, ad1.size()) && passed;
 
 
-        for (int i = 0; i < 8; i++) {;
+        for (int i = 0; i < 80; i++) {;
             ad1.removeFirst();
         }
 
-        passed = checkSize(25, ad1.size()) && passed;
+        passed = checkSize(10, ad1.size()) && passed;
+
+        System.out.println("Printing out deque: ");
+        ad1.printDeque();
+
+        printTestStatus(passed);
+    }
+
+    public static void removeLastTest() {
+        System.out.println("Running removeLastTest.");
+        ArrayDeque<String> ad1 = new ArrayDeque<>();
+
+        boolean passed = checkEmpty(true, ad1.isEmpty());
+
+        for (int i = 0; i < 90; i++) {;
+            ad1.addLast("last " + i);
+        }
+
+        passed = checkSize(90, ad1.size()) && passed;
+
+
+        for (int i = 0; i < 80; i++) {;
+            ad1.removeLast();
+        }
+
+        passed = checkSize(10, ad1.size()) && passed;
 
         System.out.println("Printing out deque: ");
         ad1.printDeque();
@@ -104,16 +129,14 @@ public class ArrayDequeTest {
     }
 
 
-
-
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
         constructorTest();
 //        deepCopyConstructorTest();
 //        addFirstTest();
-        addLastTest();
+//        addLastTest();
 //        removeFirstTest();
-//        removeLastTest();
+        removeLastTest();
 //        getTest();
 //        getRecursiveTest();
     }
