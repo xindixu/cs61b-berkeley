@@ -10,4 +10,24 @@ public class Palindrome {
 
         return queue;
     }
+
+
+    private boolean isPalindrome(Deque<Character> queue){
+        int size = queue.size();
+        if(size == 0 || size == 1){
+            return true;
+        }
+
+        char first = queue.removeFirst();
+        char last = queue.removeLast();
+        if(first == last){
+            return isPalindrome(queue);
+        }
+        return false;
+    }
+
+    public boolean isPalindrome(String word) {
+        Deque<Character> queue = wordToDeque(word);
+        return isPalindrome(queue);
+    }
 }
