@@ -14,13 +14,13 @@ public class Palindrome {
 
     private boolean isPalindrome(Deque<Character> queue) {
         int size = queue.size();
-        if(size == 0 || size == 1){
+        if (size == 0 || size == 1) {
             return true;
         }
 
         char first = queue.removeFirst();
         char last = queue.removeLast();
-        if(first == last){
+        if (first == last) {
             return isPalindrome(queue);
         }
         return false;
@@ -33,13 +33,13 @@ public class Palindrome {
 
     private boolean isPalindrome(Deque<Character> queue, CharacterComparator cc) {
         int size = queue.size();
-        if(size == 0 || size == 1){
+        if (size == 0 || size == 1) {
             return true;
         }
 
         char first = queue.removeFirst();
         char last = queue.removeLast();
-        if(cc.equalChars(first, last)){
+        if (cc.equalChars(first, last)) {
             return isPalindrome(queue, cc);
         }
         return false;
