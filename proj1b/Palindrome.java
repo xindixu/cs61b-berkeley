@@ -12,7 +12,7 @@ public class Palindrome {
     }
 
 
-    private boolean isPalindrome(Deque<Character> queue){
+    private boolean isPalindrome(Deque<Character> queue) {
         int size = queue.size();
         if(size == 0 || size == 1){
             return true;
@@ -30,4 +30,24 @@ public class Palindrome {
         Deque<Character> queue = wordToDeque(word);
         return isPalindrome(queue);
     }
+
+    private boolean isPalindrome(Deque<Character> queue, CharacterComparator cc) {
+        int size = queue.size();
+        if(size == 0 || size == 1){
+            return true;
+        }
+
+        char first = queue.removeFirst();
+        char last = queue.removeLast();
+        if(cc.equalChars(first, last)){
+            return isPalindrome(queue, cc);
+        }
+        return false;
+    }
+
+    public boolean isPalindrome(String word, CharacterComparator cc) {
+        Deque<Character> queue = wordToDeque(word);
+        return isPalindrome(queue, cc);
+    }
+
 }
