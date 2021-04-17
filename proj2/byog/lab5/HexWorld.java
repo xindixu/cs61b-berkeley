@@ -26,12 +26,12 @@ public class HexWorld {
         int x;
         int y;
 
-        Position(int x, int y){
+        Position(int x, int y) {
             this.x = x;
             this.y = y;
         }
 
-        public String toString(){
+        public String toString() {
             return "(" + x + "," + y + ")";
         }
     }
@@ -57,7 +57,7 @@ public class HexWorld {
      * @param tile The name of the tile
      */
     public static void addHexagon(TETile[][] world, Position position, int size, TETile tile) {
-        if(size < MIN_SIZE){
+        if (size < MIN_SIZE) {
             System.out.println("Size should be greater than " + MIN_SIZE);
             return;
         }
@@ -106,7 +106,7 @@ public class HexWorld {
         }
     }
 
-    public static void initializeTiles(TETile[][] world){
+    public static void initializeTiles(TETile[][] world) {
         for (int x = 0; x < WIDTH; x += 1) {
             for (int y = 0; y < HEIGHT; y += 1) {
                 world[x][y] = Tileset.NOTHING;
@@ -121,9 +121,7 @@ public class HexWorld {
         TETile[][] world = new TETile[WIDTH][HEIGHT];
         initializeTiles(world);
 
-        addTesselationOfHexagon(world, new Position(25,25), 6);
+        addTesselationOfHexagon(world, new Position(25, 25), 6);
         ter.renderFrame(world);
-
-
     }
 }
